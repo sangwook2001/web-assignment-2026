@@ -7,25 +7,46 @@ const partSelect = document.querySelector("#part");
 const reasonInput = document.querySelector("#reason");
 
 function createAlertMessage() {
-  // TODO:
-  // 각 입력창의 .value를 읽어서 변수에 저장해보세요.
+  const studentName = studentNameInput.value;
+  const studentId = studentIdInput.value;
+  const studentEmail = studentEmailInput.value;
+  const clubName = clubNameInput.value;
+  const part = partSelect.value;
+  const reason = reasonInput.value;
 
-  return `지원서가 제출되었습니다.
+  return `${studentName}님의 동아리 지원서가 성공적으로 제출되었어요 😎
 
-이름: 
-학번: 
-이메일: 
-관심 동아리: 
-지원 분야: 
-지원 이유: `;
+이름: ${studentName}
+학번: ${studentId}
+이메일: ${studentEmail}
+관심 동아리: ${clubName}
+지원 분야: ${part}
+지원 이유: ${reason}`;
 }
 
 clubForm.addEventListener("submit", function (event) {
-  // TODO:
-  // 새로고침이 되지 않도록 막아보세요.
+  event.preventDefault();
+
+  const idValue = studentIdInput.value;
+
+  if (idValue === "" || isNaN(idValue)) {
+    alert("학번에는 숫자만 입력해 주세요");
+    studentIdInput.focus();
+    return;
+  }
 
   const message = createAlertMessage();
+  alert(message);
+});
 
-  // TODO:
-  // message를 alert로 띄워보세요.
+const idWarning = document.querySelector("#id-warning");
+
+studentIdInput.addEventListener("input", function() {
+  const value = this.value;
+
+  if (/[^0-9]/.test(value)) {
+    idWarning.style.display = "block";
+  } else {
+    idWarning.style.display = "none";
+  }
 });

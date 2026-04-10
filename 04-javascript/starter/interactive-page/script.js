@@ -20,44 +20,28 @@ function showResult(resultValue) {
 
 addButton.addEventListener("click", function () {
   const numbers = getNumbers();
-
-  // TODO:
-  // firstNumber와 secondNumber를 더한 결과를 result 변수에 저장해보세요.
-  const result = 0;
-
+  const result = numbers.firstNumber + numbers.secondNumber;
   showResult(result);
 });
 
 subtractButton.addEventListener("click", function () {
   const numbers = getNumbers();
-
-  // TODO:
-  // firstNumber에서 secondNumber를 뺀 결과를 result 변수에 저장해보세요.
-  const result = 0;
-
+  const result = numbers.firstNumber - numbers.secondNumber;
   showResult(result);
 });
 
 multiplyButton.addEventListener("click", function () {
   const numbers = getNumbers();
-
-  // TODO:
-  // firstNumber와 secondNumber를 곱한 결과를 result 변수에 저장해보세요.
-  const result = 0;
-
+  const result = numbers.firstNumber * numbers.secondNumber;
   showResult(result);
 });
 
 divideButton.addEventListener("click", function () {
   const numbers = getNumbers();
-
-  // TODO:
-  // secondNumber가 0인지 먼저 확인해보세요.
-  // 0이면 "0으로 나눌 수 없습니다."를 보여주고 함수를 종료해보세요.
-
-  // TODO:
-  // firstNumber를 secondNumber로 나눈 결과를 result 변수에 저장해보세요.
-  const result = 0;
-
+  if (numbers.secondNumber === 0) {
+    showResult("0으로 나눌 수 없습니다!");
+    return;
+  }
+  const result = numbers.firstNumber / numbers.secondNumber;
   showResult(result);
 });
