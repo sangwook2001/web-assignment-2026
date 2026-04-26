@@ -27,11 +27,39 @@ function createAlertMessage() {
 clubForm.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const idValue = studentIdInput.value;
+  if (studentNameInput.value.trim() === "") {
+    alert("이름을 입력해주세요.");
+    studentNameInput.focus();
+    return;
+  }
 
-  if (idValue === "" || isNaN(idValue)) {
-    alert("학번에는 숫자만 입력해 주세요");
+  const idValue = studentIdInput.value.trim();
+  if (idValue === "") {
+    alert("학번을 입력해주세요.");
     studentIdInput.focus();
+    return;
+  }
+  if (isNaN(idValue)) {
+    alert("학번에는 숫자만 입력해 주세요.");
+    studentIdInput.focus();
+    return;
+  }
+
+  if (studentEmailInput.value.trim() === "") {
+    alert("이메일을 입력해주세요.");
+    studentEmailInput.focus();
+    return;
+  }
+
+  if (clubNameInput.value.trim() === "") {
+    alert("동아리 이름을 입력해주세요.");
+    clubNameInput.focus();
+    return;
+  }
+
+  if (reasonInput.value.trim() === "") {
+    alert("지원 이유를 작성해주세요.");
+    reasonInput.focus();
     return;
   }
 
