@@ -1,23 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "./components/TodoForm.jsx";
 import TodoList from "./components/TodoList.jsx";
 
 function App() {
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(() => {
+    const savedTodos = localStorage.getItem("my-todo-list");
+    return savedTodos ? JSON.parse(savedTodos) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("my-todo-list", JSON.stringify(todos));
+  }, [todos]);
 
   function addTodo(content) {
-    // TODO:
-    // 새 todo 객체를 만들고 setTodos를 사용해 목록 앞쪽에 추가해보세요.
+    const newTodo = {
+      id: crypto.randomUUID(),
+      content,
+      isDone: false,
+    };
+
+    setTodos([newTodo, ...todos]);
   }
 
   function toggleTodo(id) {
-    // TODO:
-    // map을 사용해서 id가 같은 todo의 isDone 값을 반대로 바꿔보세요.
+    setTodos(prevTodos => 
+      prevTodos.map(todo => 
+        todo.id === id ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
   }
 
   function deleteTodo(id) {
-    // TODO:
-    // filter를 사용해서 id가 같은 todo를 목록에서 제거해보세요.
+    setTodos(prevTodos => prevTodos.filter(todo => todo.id !== id));
   }
 
   return (
